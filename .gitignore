@@ -1,0 +1,15 @@
+### Java ###
+*.jar
+*.war
+*.ear
+*.class
+
+### Apache Maven ###
+/target/
+
+### JetBrains IntelliJ IDEA ###
+/.idea/
+*.iml
+*.ims
+*.ipr
+*.http
