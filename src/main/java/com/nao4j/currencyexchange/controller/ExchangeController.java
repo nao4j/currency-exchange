@@ -13,14 +13,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
 import static org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME;
+import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.ResponseEntity.notFound;
-import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
 @RequiredArgsConstructor
@@ -48,10 +49,10 @@ public class ExchangeController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> create(@RequestBody final ExchangeFull exchange) {
+    @ResponseStatus(CREATED)
+    public void create(@RequestBody final ExchangeFull exchange) {
         final var localTime = exchange.time().withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime();
         exchangeService.create(exchange.from(), exchange.to(), exchange.rate(), localTime);
-        return ok().build();
     }
 
 }
