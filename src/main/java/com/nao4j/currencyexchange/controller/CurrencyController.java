@@ -8,6 +8,7 @@ import com.nao4j.currencyexchange.service.CurrencyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.List;
@@ -28,6 +30,7 @@ import static org.springframework.http.ResponseEntity.noContent;
 import static org.springframework.http.ResponseEntity.notFound;
 import static org.springframework.http.ResponseEntity.status;
 
+@Validated
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/currencies")
@@ -52,7 +55,7 @@ public class CurrencyController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> create(@RequestBody CurrencyFull currency) {
+    public ResponseEntity<Object> create(@RequestBody @Valid final CurrencyFull currency) {
         try {
             currencyService.create(currency.code(), currency.quantifier());
             return status(CREATED).build();
@@ -62,7 +65,7 @@ public class CurrencyController {
     }
 
     @PutMapping
-    public ResponseEntity<Object> update(@RequestBody final CurrencyFull currency) {
+    public ResponseEntity<Object> update(@RequestBody @Valid final CurrencyFull currency) {
         try {
             currencyService.update(currency.code(), currency.quantifier());
             return noContent().build();
