@@ -11,7 +11,7 @@ import java.time.ZonedDateTime;
 import static java.math.RoundingMode.HALF_DOWN;
 
 @Component
-public class ExchangeToProjectionConverterImpl implements ExchangeToProjectionConverter {
+class ExchangeToProjectionConverterImpl implements ExchangeToProjectionConverter {
 
     @Override
     public Object convert(final Exchange exchange, final ZoneId zone, final Projection projection) {

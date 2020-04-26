@@ -21,7 +21,7 @@ import static java.time.Month.JANUARY;
 import static java.util.stream.Collectors.toSet;
 
 @Service
-public class ExchangeServiceImpl implements ExchangeService {
+class ExchangeServiceImpl implements ExchangeService {
 
     private final ExchangeRepository exchangeRepository;
     private final CurrencyRepository currencyRepository;

@@ -34,13 +34,13 @@ import static org.springframework.http.ResponseEntity.status;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/currencies")
-public class CurrencyController {
+class CurrencyController {
 
     private final CurrencyService currencyService;
     private final CurrencyToProjectionConverter currencyToProjectionConverter;
 
     @GetMapping
-    public List<Object> getAll(
+    List<Object> getAll(
             @RequestParam @DateTimeFormat(iso = DATE_TIME) final ZonedDateTime time,
             @RequestParam(defaultValue = "true") final boolean actualOnly,
             @RequestParam(defaultValue = "FULL") final Projection projection
@@ -55,7 +55,7 @@ public class CurrencyController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> create(@RequestBody @Valid final CurrencyFull currency) {
+    ResponseEntity<Object> create(@RequestBody @Valid final CurrencyFull currency) {
         try {
             currencyService.create(currency.code(), currency.quantifier());
             return status(CREATED).build();
@@ -65,7 +65,7 @@ public class CurrencyController {
     }
 
     @PutMapping
-    public ResponseEntity<Object> update(@RequestBody @Valid final CurrencyFull currency) {
+    ResponseEntity<Object> update(@RequestBody @Valid final CurrencyFull currency) {
         try {
             currencyService.update(currency.code(), currency.quantifier());
             return noContent().build();

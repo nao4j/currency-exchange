@@ -30,13 +30,13 @@ import static org.springframework.http.ResponseEntity.status;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/exchanges")
-public class ExchangeController {
+class ExchangeController {
 
     private final ExchangeService exchangeService;
     private final ExchangeToProjectionConverter exchangeToProjectionConverter;
 
     @GetMapping("/{from}/{to}")
-    public ResponseEntity<Object> get(
+    ResponseEntity<Object> get(
             @PathVariable @CurrencyCode final String from,
             @PathVariable @CurrencyCode final String to,
             @RequestParam @DateTimeFormat(iso = DATE_TIME) final ZonedDateTime time,
@@ -53,7 +53,7 @@ public class ExchangeController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> create(@RequestBody @Valid final ExchangeFull exchange) {
+    ResponseEntity<Object> create(@RequestBody @Valid final ExchangeFull exchange) {
         final var localTime = exchange.time().withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime();
         exchangeService.create(exchange.from(), exchange.to(), exchange.rate(), localTime);
         return status(CREATED).build();

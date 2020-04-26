@@ -5,7 +5,7 @@ import com.nao4j.currencyexchange.projection.CurrencyFull;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CurrencyToProjectionConverterImpl implements CurrencyToProjectionConverter {
+class CurrencyToProjectionConverterImpl implements CurrencyToProjectionConverter {
 
     @Override
     public Object convert(final Currency currency, final Projection projection) {

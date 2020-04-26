@@ -13,7 +13,7 @@ import java.util.List;
 import static java.lang.String.format;
 
 @Service
-public class CurrencyServiceImpl implements CurrencyService {
+class CurrencyServiceImpl implements CurrencyService {
 
     private final CurrencyRepository currencyRepository;
     private final long expireInMinutes;

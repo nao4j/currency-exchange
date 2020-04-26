@@ -16,14 +16,14 @@ import static java.util.stream.Collectors.joining;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
 @ControllerAdvice
-public class ValidationExceptionHandler {
+class ValidationExceptionHandler {
 
     private static final String ERROR_MESSAGE_DELIMITER = "; ";
 
     @ResponseBody
     @ResponseStatus(BAD_REQUEST)
     @ExceptionHandler(ConstraintViolationException.class)
-    public ModelMap handle(final ServletWebRequest request, final ConstraintViolationException e) {
+    ModelMap handle(final ServletWebRequest request, final ConstraintViolationException e) {
         final var message = e.getConstraintViolations().stream()
                 .map(value -> value.getPropertyPath() + ": " + value.getMessage())
                 .collect(joining(ERROR_MESSAGE_DELIMITER));
@@ -33,7 +33,7 @@ public class ValidationExceptionHandler {
     @ResponseBody
     @ResponseStatus(BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ModelMap handle(final ServletWebRequest request, final MethodArgumentNotValidException e) {
+    ModelMap handle(final ServletWebRequest request, final MethodArgumentNotValidException e) {
         final var message = e.getBindingResult().getFieldErrors().stream()
                 .map(value -> value.getField() + ": " + value.getDefaultMessage())
                 .collect(joining(ERROR_MESSAGE_DELIMITER));
