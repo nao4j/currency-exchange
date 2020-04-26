@@ -1,7 +1,7 @@
 package com.nao4j.currencyexchange.controller;
 
-import com.nao4j.currencyexchange.convertor.CurrencyToProjectionConverter;
-import com.nao4j.currencyexchange.convertor.CurrencyToProjectionConverter.Projection;
+import com.nao4j.currencyexchange.converter.CurrencyToProjectionConverter;
+import com.nao4j.currencyexchange.converter.CurrencyToProjectionConverter.Projection;
 import com.nao4j.currencyexchange.exception.Failure;
 import com.nao4j.currencyexchange.projection.CurrencyFull;
 import com.nao4j.currencyexchange.service.CurrencyService;

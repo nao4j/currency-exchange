@@ -1,4 +1,4 @@
-package com.nao4j.currencyexchange.convertor;
+package com.nao4j.currencyexchange.converter;
 
 import com.nao4j.currencyexchange.domain.Exchange;
 import com.nao4j.currencyexchange.projection.ExchangeFull;
