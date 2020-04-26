@@ -19,6 +19,6 @@ public interface ExchangeRepository extends Repository<Exchange, Long> {
             LocalDateTime end
     );
 
-    Exchange save(Exchange exchange);
+    Exchange saveAndFlush(Exchange exchange);
 
 }

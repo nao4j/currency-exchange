@@ -45,7 +45,7 @@ class CurrencyServiceImpl implements CurrencyService {
         if (currencyRepository.existsByCode(code)) {
             throw new Failure(format("Currency '%s' already exists", code));
         }
-        return currencyRepository.save(new Currency(code, quantifier));
+        return currencyRepository.saveAndFlush(new Currency(code, quantifier));
     }
 
     @Override
@@ -55,7 +55,7 @@ class CurrencyServiceImpl implements CurrencyService {
         if (idContainer.isEmpty()) {
             throw new Failure(format("Currency '%s' not exists", code));
         }
-        return currencyRepository.save(new Currency(idContainer.get(), code, quantifier));
+        return currencyRepository.saveAndFlush(new Currency(idContainer.get(), code, quantifier));
     }
 
 }

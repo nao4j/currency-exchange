@@ -32,6 +32,6 @@ public interface CurrencyRepository extends Repository<Currency, Long> {
     """)
     List<Currency> findAllUpToTime(LocalDateTime time);
 
-    Currency save(Currency currency);
+    Currency saveAndFlush(Currency currency);
 
 }

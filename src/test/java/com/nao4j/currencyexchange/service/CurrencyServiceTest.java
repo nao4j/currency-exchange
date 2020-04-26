@@ -82,13 +82,13 @@ class CurrencyServiceTest implements WithAssertions {
         @Test
         void shouldPass() {
             when(currencyRepository.existsByCode(anyString())).thenReturn(false);
-            when(currencyRepository.save(any(Currency.class))).thenAnswer(returnsFirstArg());
+            when(currencyRepository.saveAndFlush(any(Currency.class))).thenAnswer(returnsFirstArg());
 
             final var expected = new Currency("USD", 4);
             assertThat(currencyService.create("USD", 4)).isEqualTo(expected);
 
             verify(currencyRepository).existsByCode("USD");
-            verify(currencyRepository).save(expected);
+            verify(currencyRepository).saveAndFlush(expected);
             verifyNoMoreInteractions(currencyRepository);
         }
 
@@ -114,12 +114,12 @@ class CurrencyServiceTest implements WithAssertions {
             when(currency.getId()).thenReturn(2L);
             when(currencyRepository.findByCode(anyString())).thenReturn(Optional.of(currency));
             final var expected = new Currency(2L, "USD", 2);
-            when(currencyRepository.save(any(Currency.class))).thenAnswer(returnsFirstArg());
+            when(currencyRepository.saveAndFlush(any(Currency.class))).thenAnswer(returnsFirstArg());
 
             assertThat(currencyService.update("USD", 2)).isEqualTo(expected);
 
             verify(currencyRepository).findByCode("USD");
-            verify(currencyRepository).save(expected);
+            verify(currencyRepository).saveAndFlush(expected);
             verifyNoMoreInteractions(currencyRepository);
         }
 

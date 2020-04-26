@@ -62,7 +62,7 @@ class ExchangeServiceImpl implements ExchangeService {
         final int quantifier = getRealScale(rate);
         final var from = findOrCreate(codeFrom, quantifier);
         final var to = findOrCreate(codeTo, quantifier);
-        return exchangeRepository.save(new Exchange(from, to, rate, time));
+        return exchangeRepository.saveAndFlush(new Exchange(from, to, rate, time));
     }
 
     private Optional<Exchange> getByPeriod(
@@ -109,7 +109,7 @@ class ExchangeServiceImpl implements ExchangeService {
         final var time = reverse.getTime();
         final var rate = ONE.divide(reverse.getRate(), 10, HALF_DOWN);
         final var result = new Exchange(from, to, rate, time);
-        return Optional.of(exchangeRepository.save(result));
+        return Optional.of(exchangeRepository.saveAndFlush(result));
     }
 
     private Optional<Exchange> generateByIntermediate(
@@ -141,7 +141,7 @@ class ExchangeServiceImpl implements ExchangeService {
                 ? firstFrom.getTime()
                 : firstTo.getTime();
         final var result = new Exchange(firstFrom.getTo(), firstTo.getTo(), rate, time);
-        return Optional.of(exchangeRepository.save(result));
+        return Optional.of(exchangeRepository.saveAndFlush(result));
     }
 
     private Optional<String> findCommonBase(final Set<String> baseFromSet, final Set<String> baseToSet) {
@@ -165,7 +165,7 @@ class ExchangeServiceImpl implements ExchangeService {
     private Currency findOrCreate(final String code, final int quantifier) {
         final var resultContainer = currencyRepository.findByCode(code);
         if (resultContainer.isEmpty()) {
-            return currencyRepository.save(new Currency(code, quantifier));
+            return currencyRepository.saveAndFlush(new Currency(code, quantifier));
         }
         return resultContainer.get();
     }
