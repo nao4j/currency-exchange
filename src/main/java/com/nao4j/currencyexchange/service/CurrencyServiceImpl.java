@@ -32,6 +32,7 @@ class CurrencyServiceImpl implements CurrencyService {
         final var start = time.minusMinutes(expireInMinutes);
         return currencyRepository.findAllActualInPeriod(start, time);
     }
+
     @Override
     @Transactional
     public List<Currency> getAllByTimeNonStrict(final LocalDateTime time) {
