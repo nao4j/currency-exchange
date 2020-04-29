@@ -18,11 +18,11 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Documented
 @Retention(RUNTIME)
 @Constraint(validatedBy = {})
-@Pattern(regexp = "[A-Z]{3}", message = "Currency code must be 3 upper letter")
+@Pattern(regexp = "[A-Z0-9]{3,5}", message = "Currency code must be 3-5 upper letter or numbers")
 @Target({METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE})
 public @interface CurrencyCode {
 
-    String message() default "Currency code must be 3 upper letter";
+    String message() default "Currency code must be 3-5 upper letter or numbers";
 
     Class<?>[] groups() default {};
 

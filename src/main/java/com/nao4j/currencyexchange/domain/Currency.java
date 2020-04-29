@@ -34,7 +34,7 @@ public class Currency {
     )
     private final Long id;
 
-    @Column(name = "code", length = 3, nullable = false, unique = true)
+    @Column(name = "code", length = 5, nullable = false, unique = true)
     private final String code;
 
     @Column(name = "quantifier", nullable = false)
