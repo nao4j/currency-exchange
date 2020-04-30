@@ -12,10 +12,9 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 
-import static java.time.temporal.ChronoField.OFFSET_SECONDS;
+import static com.nao4j.currencyexchange.TestUtil.defaultZoneOffset;
 
 class ExchangeToProjectionConverterTest implements WithAssertions {
 
@@ -78,10 +77,6 @@ class ExchangeToProjectionConverterTest implements WithAssertions {
         final var expectedTime = ZonedDateTime.of(LocalDateTime.parse("2020-04-26T11:10"), zone);
         final var expected = new ExchangeShort(new BigDecimal("0.00000180"), expectedTime);
         assertThat(converter.convert(exchange, zone, Projection.SHORT)).isEqualTo(expected);
-    }
-
-    private ZoneId defaultZoneOffset(int hours) {
-        return ZoneId.from(ZoneOffset.ofTotalSeconds(ZonedDateTime.now().get(OFFSET_SECONDS) + hours * 3600));
     }
 
 }
