@@ -12,7 +12,7 @@ import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTest
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = NONE)
 @TestPropertySource(properties = {
-        "spring.datasource.url=jdbc:tc:postgresql:12.2:///databasename",
+        "spring.datasource.url=jdbc:tc:postgresql:latest:///databasename",
         "spring.datasource.driver-class-name=org.testcontainers.jdbc.ContainerDatabaseDriver"
 })
 abstract class AbstractRepositoryTest implements WithAssertions {
