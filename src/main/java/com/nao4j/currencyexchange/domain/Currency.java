@@ -45,4 +45,5 @@ public class Currency {
         this.code = code;
         this.quantifier = quantifier;
     }
+
 }
